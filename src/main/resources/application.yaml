@@ -1,4 +1,6 @@
 spring:
+  thymeleaf:
+    prefix: classpath:/templates/
   datasource:
     url: jdbc:postgresql://localhost:5432/blogdb
     username: postgres
