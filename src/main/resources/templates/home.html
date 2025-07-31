@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
-    <p th:text = "Hello ${}">Hello user</p>
+<table>
+    <thead>
+        <tr>
+            <th>user_id</th>
+            <th>username</th>
+            <th>user email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each = "user : ${users}">
+            <td th:text = "${user.id}"></td>
+            <td th:text = "${user.username}"></td>
+            <td th:text = "${user.email}"></td>
+            <td th:text = "${user.password}"></td>
+        </tr>
+
+    </tbody>
+</table>
+
 
 </body>
 </html>

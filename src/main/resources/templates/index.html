@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- Включаем пространство имён Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница блога</title>
+</head>
+<body>
+<!-- Отображаем заголовок из модели -->
+<h1 th:text="${welcomeMessage}">Заголовок по умолчанию</h1>
+
+<!-- Простое меню навигации -->
+<nav>
+    <a th:href="@{/static}">Главная</a> |
+    <a th:href="@{/posts}">Посты</a> |
+    <a th:href="@{/users}">Пользователи</a>
+</nav>
+
+<!-- Основное содержимое -->
+<div>
+    <h2>О блоге</h2>
+    <p>Это мой личный блог, где я делюсь мыслями и идеями.</p>
+
+    <!-- Условный блок -->
+    <div th:if="${currentYear > 2023}">
+        <p>Текущий год: <span th:text="${currentYear}">2023</span></p>
+    </div>
+</div>
+
+<!-- Футер -->
+<footer>
+    <p>© <span th:text="${currentYear}">2023</span> Мой блог</p>
+</footer>
+</body>
+</html>
