@@ -5,6 +5,7 @@ import com.example.blog.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -20,7 +21,7 @@ public class UserService {
         return user;
     }
 
-    public User deleteUser(long id) {
+    public User deleteUser(Long id) {
         userRepository.deleteById(id);
         return userRepository.findById(id).get();
     }
@@ -29,8 +30,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> findById(long id) {
-        return userRepository.findById(id);
+    public Optional<User> findById(Long id) {
+        return Optional.of(userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User not found")));
+    }
+
+    public void deleteById(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new NoSuchElementException("User not found");
+        }
+        userRepository.deleteById(id);
     }
 
 
